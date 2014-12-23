@@ -3,6 +3,8 @@ christmas-lights
 
 Python RPi project to control Christmas Lights
 
+Uses [flask webserver](http://flask.pocoo.org/) and virtual environments
+
 
 `$	. venv/bin/activate`
 
