@@ -21,19 +21,83 @@
   <body>
   	<div class="container">
 
-    	<h1>Raspberry Pi - Christmas Lights: {{ title }}</h1>
-      	<p>Lights are currently {{status}}</p>
-      	<p>
-      		<a href="/on"><button type="button" class="btn btn-success">On</button></a>
-      	</p>
-      	<p>
-      		<a href="/off"><button type="button" class="btn btn-default">Off</button></a>
-      	</p>
+    	<h1>Raspberry Pi - Alan's GPIO Control Page</h1>
+
+
+
+        <table class="table table-striped">
+          <tr>
+            <th>Action</th>
+            <th></th>
+            <th></th>
+            <th>Comments/Notes</th>
+          </tr>
+          <tr>
+            <td>Christmas Lights</td>
+            <td><a href="#"><button type="button" id = "lights-on" class="btn btn-success btn-lg">On</button></a></td>
+            <td><a href="#"><button type="button" id = "lights-off" class="btn btn-default btn-lg">Off</button></a></td>
+            <td>Lights are currently <span id = "lights-status"></span></td>
+          </tr>
+          <tr>
+            <td>Ultrasonic Ranger</td>
+            <td><a href="/#"><button type="button" id = "ranger" class="btn btn-success btn-lg">Range</button></a></td>
+            <td>Distance: <span id = "result"></span>cm</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Solenoid</td>
+            <td><a href="#"><button type="button" id = "solenoid-short"class="btn btn-success btn-lg">1 Marble</button></a></td>
+            <td><a href="#"><button type="button" id = "solenoid-long"class="btn btn-success btn-lg">10 Marbles</button></a></td>
+            <td>Solenoid is currently <span id = "solenoid-status"></span></td>
+          </tr>
+        </table>
 
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $("#lights-on").click(function(e){
+      console.log('About to turn the lights on')
+      $.get( "/lights/on", function( data ) {
+        $( "#lights-status" ).html( data.lights );
+        });
+    });
+    </script>
+  <script>
+    $("#lights-off").click(function(e){
+      console.log('About to turn the lights off')
+      $.get( "/lights/off", function( data ) {
+        $( "#lights-status" ).html( data.lights );
+        });
+    });
+    </script>    
+    <script>
+    $("#ranger").click(function(e){
+      console.log('About to get range from sensor')
+      $.get( "/ultrasonic/range", function( data ) {
+        $( "#result" ).html( data.distance );
+        //alert( "Distance :" + data.distance );
+        });
+    });
+    </script>
+  <script>
+    $("#solenoid-short").click(function(e){
+      console.log('About to send a short pulse to the solenoid')
+      $.get( "/solenoid/short", function( data ) {
+        $( "#solenoid-status" ).html( data.solenoid );
+        });
+    });
+    </script>
+  <script>
+    $("#solenoid-long").click(function(e){
+      console.log('About to send a long pulse to the solenoid')
+      $.get( "/solenoid/long", function( data ) {
+        $( "#solenoid-status" ).html( data.solenoid );
+        });
+    });
+    </script>    
+
   </body>
 </html>
