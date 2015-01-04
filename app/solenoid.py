@@ -14,6 +14,8 @@ import datetime
 import time
 import sqlwrite
 
+import sqlite3 as lite
+import sys
 
 
 from app import app
@@ -40,6 +42,30 @@ def solenoid_long():
 	solenoid_pulse(4)
 
 	return jsonify(solenoid="Pulsed")
+
+
+#############################################
+# Display Log of Marble Launches
+#############################################
+@app.route('/solenoid/log')
+def solenoid_log():
+
+
+	con = lite.connect('marbles.db')
+
+	with con:    
+	    
+	    cur = con.cursor()    
+	    cur.execute("SELECT * FROM Launches order by LaunchDate desc")
+
+	    marbles = cur.fetchall()
+
+	    for marble in marbles:
+	        print marble
+
+	return render_template('log.html', title='Marbles Log', marbles = marbles)
+
+
 
 
 #############################################
