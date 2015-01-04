@@ -18,57 +18,53 @@ import sqlwrite
 
 from app import app
 
+#############################################
+# Releases one or more marbles
+#############################################
 @app.route('/solenoid/short')
 def solenoid_on():
 
-	short_pulse = float(175)/1000
-
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(25,GPIO.OUT)
-	GPIO.output(25,False)
-	time.sleep(short_pulse)
-	GPIO.output(25,True)
-	print "Sending short pulse of ",short_pulse, "s to solenoid"
-
-	marble_launch_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f')
-
-	#Write to the SQL Database
-	sqlwrite.write_marble(marble_launch_time,'Marble launched','Single',1,1)
+	#Call the function to pulse the solenoid and release a marble
+	solenoid_pulse(1)
 
 	return jsonify(solenoid="Pulsed")
 
 
+#############################################
+# Releases one or more marbles
+#############################################
 @app.route('/solenoid/long')
 def solenoid_long():
 
-	short_pulse = float(175)/1000
-	delay = float(1500)/1000
-	multiple = 10
+	#Call the function to pulse the solenoid and release a lot of marbles
+	solenoid_pulse(4)
 
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(25,GPIO.OUT)
-	for x in range(0, multiple):
-		GPIO.output(25,False)
-		time.sleep(short_pulse)
-		GPIO.output(25,True)
-		print "Sending pulse of ",short_pulse,"s to solenoid to release marble #", x+1, " of ", multiple
-
-		marble_launch_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f')
-
-		#Write to the SQL Database
-		sqlwrite.write_marble(marble_launch_time,'Marble launched','Multiple',x+1,multiple)
-
-		time.sleep(delay)
-
-		#TODO: Check if the marble has passed the infrared detector
-		#		Otherwise there must be a jam or the funnel is empty of marbles
-
-		print "Waiting for ",delay,"s before sending marble #",x+2
 	return jsonify(solenoid="Pulsed")
 
 
+#############################################
+# Releases one or more marbles
+#############################################
+def solenoid_pulse(count):
 
-def pulse_solenoid(count):
 	short_pulse = float(175)/1000
 	delay = float(1500)/1000
-	multiple = 10
+
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(25,GPIO.OUT)
+	for x in range(0, count):
+		GPIO.output(25,False)
+		time.sleep(short_pulse)
+		GPIO.output(25,True)
+		print "Sending pulse of ",short_pulse, "s to solenoid to release marble #", x+1, " of ", count
+
+		marble_launch_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f')
+
+		group = 'Single'
+		if count>1:
+			group = 'Multiple'
+			time.sleep(delay)
+			print "Waiting for ",delay,"s before sending marble #",x+2
+
+		#Write to the SQL Database
+		sqlwrite.write_marble(marble_launch_time,'Marble launched',group,x+1,count)
