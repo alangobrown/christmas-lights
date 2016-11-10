@@ -8,6 +8,8 @@ Uses [flask webserver](http://flask.pocoo.org/) and [virtual environments](http:
 
 `$	. venv/bin/activate`
 
+`$ pip install Flask`
+
 `$	sudo ./run.py`
 
 Needs to run as root to use the GPIO pins
