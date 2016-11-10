@@ -15,3 +15,12 @@ Needs to run as root to use the GPIO pins
 ### Troubleshooting
 
 `$	sudo python ./run.py`    uses the general python interpreter (not the virtualenv one) and will complain of a missing flask module
+
+
+To install PIP
+`sudo apt-get install python-pip`
+
+
+To install venv
+
+`sudo pip install virtualenv`
