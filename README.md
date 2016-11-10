@@ -8,7 +8,7 @@ Uses [flask webserver](http://flask.pocoo.org/) and [virtual environments](http:
 
 `$	. venv/bin/activate`
 
-`$ pip install Flask`
+`$ pip install flask`
 
 `$	sudo ./run.py`
 
