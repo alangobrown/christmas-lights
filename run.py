@@ -12,9 +12,9 @@ import time
 
 
 #Write it to the log file
-with open('app/logs/marbles.csv', 'a') as csvfile:
-	marblewriter = csv.writer(csvfile, quotechar='|', quoting=csv.QUOTE_MINIMAL)
-	marblewriter.writerow([datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f'),'App Started'])
+#with open('app/logs/marbles.csv', 'a') as csvfile:
+#	marblewriter = csv.writer(csvfile, quotechar='|', quoting=csv.QUOTE_MINIMAL)
+#	marblewriter.writerow([datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f'),'App Started'])
 
 
 
