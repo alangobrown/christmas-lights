@@ -24,3 +24,7 @@ To install PIP
 To install venv
 
 `sudo pip install virtualenv`
+
+Create a virtual environment
+
+virtualenv <venvname>    e.g. `virtualenv lightsenv`
