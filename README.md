@@ -31,3 +31,10 @@ Needs to run as root to use the GPIO pins
 4 - create a virtual environment
 
 virtualenv <venvname>    e.g. `virtualenv lightsenv`
+
+5 - Initiate git
+
+`git init`
+
+6 - Clone the repository
+
