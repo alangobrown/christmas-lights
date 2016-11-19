@@ -43,7 +43,7 @@ virtualenv <venvname>    e.g. `virtualenv lightsvenv`
 9 - Install Flask
 
 `cd <venvname>`
-`$ pip install flask`
+`$ sudo pip install flask`
 cd `../`
 
 10 - Run the app
