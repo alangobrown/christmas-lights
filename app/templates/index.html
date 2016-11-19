@@ -40,30 +40,5 @@
         $( "#lights-status" ).html( data.lights );
         });
     });
-    </script>    
-    <script>
-    $("#ranger").click(function(e){
-      console.log('About to get range from sensor')
-      $.get( "/ultrasonic/range", function( data ) {
-        $( "#result" ).html( data.distance );
-        //alert( "Distance :" + data.distance );
-        });
-    });
-    </script>
-  <script>
-    $("#solenoid-short").click(function(e){
-      console.log('About to send a short pulse to the solenoid')
-      $.get( "/solenoid/short", function( data ) {
-        $( "#solenoid-status" ).html( data.solenoid );
-        });
-    });
-    </script>
-  <script>
-    $("#solenoid-long").click(function(e){
-      console.log('About to send a long pulse to the solenoid')
-      $.get( "/solenoid/long", function( data ) {
-        $( "#solenoid-status" ).html( data.solenoid );
-        });
-    });
-    </script>    
+    </script>      
 {% endblock %}
