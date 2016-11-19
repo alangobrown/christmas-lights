@@ -14,19 +14,20 @@ Uses [flask webserver](http://flask.pocoo.org/) and [virtual environments](http:
 
 Needs to run as root to use the GPIO pins
 
-### Troubleshooting
+### Initial RPi Install
 
-`$	sudo python ./run.py`    uses the general python interpreter (not the virtualenv one) and will complain of a missing flask module
+1 - Update packages
 
+`sudo apt-get update`
 
-To install PIP
+2 - install PIP
 `sudo apt-get install python-pip`
 
 
-To install venv
+3 - install venv
 
 `sudo pip install virtualenv`
 
-Create a virtual environment
+4 - create a virtual environment
 
 virtualenv <venvname>    e.g. `virtualenv lightsenv`
