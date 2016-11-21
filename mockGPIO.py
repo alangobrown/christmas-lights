@@ -10,7 +10,7 @@ BCM = 'BCM'
 
 
 OUT = 'OUT'
-
+IN = 'IN'
 
 def setup(pin, mode_type):
 	print 'MockGPIO - pin ', pin, ' setup as ', mode_type

@@ -7,16 +7,18 @@
 
         <table class="table table-striped">
           <tr>
+            <th>Channel</th>
             <th>Action</th>
             <th></th>
             <th></th>
             <th>Comments/Notes</th>
           </tr>
           <tr>
+            <td>1</td>
             <td>Christmas Lights</td>
             <td><a href="#"><button type="button" id = "lights-on" class="btn btn-success btn-lg">On</button></a></td>
             <td><a href="#"><button type="button" id = "lights-off" class="btn btn-default btn-lg">Off</button></a></td>
-            <td>Lights are currently <span id = "lights-status"></span></td>
+            <td>Channel is currently <span id = "lights-status"></span></td>
           </tr>
         </table>
 
@@ -27,16 +29,18 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <script>
     $("#lights-on").click(function(e){
-      console.log('About to turn the lights on')
-      $.get( "/lights/on", function( data ) {
+      var channel = 99;
+      console.log('About to turn channel ' + channel + ' on')
+      $.get( "/lights/on/1", function( data ) {
         $( "#lights-status" ).html( data.lights );
         });
     });
     </script>
   <script>
     $("#lights-off").click(function(e){
-      console.log('About to turn the lights off')
-      $.get( "/lights/off", function( data ) {
+      var channel = 99;
+      console.log('About to turn channel ' + channel + ' off')
+      $.get( "/lights/off/1", function( data ) {
         $( "#lights-status" ).html( data.lights );
         });
     });
