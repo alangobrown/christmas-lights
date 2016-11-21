@@ -17,32 +17,28 @@ from app import app
 def on(state,channel):
 
 #Check the channel and lookup the correct RPi GPI Pin
-	if(channel = 1):
+	if(channel == "1"):
 		pin = 4
-	elif(channel = 2):
+	elif(channel == "2"):
 		pin = 17
-	elif(channel = 3):
+	elif(channel == "3"):
 		pin = 27
-	elif(channel = 4):
+	elif(channel =="4"):
 		pin = 22
 	else:
-		(pin = -1)
+		pin = -1
 
 	app.logger.info('Channel ' + channel + ' has been set to ' + state)
-	app.logger.info('Channel ' + channel + ' corresponds to pin ' + pin)
+	app.logger.info('Channel ' + channel + ' corresponds to pin ' + str(pin))
 
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(4,GPIO.OUT)
-	GPIO.setup(17,GPIO.OUT)
-	GPIO.setup(27,GPIO.OUT)
-	GPIO.setup(22,GPIO.OUT)
-
+	GPIO.setup(pin,GPIO.OUT)
 	
 	if(state == 'on'):
-		GPIO.output(4,False)
+		GPIO.output(pin,False)
 		return jsonify(lights="On", channel = channel)
 	elif (state =='off'):
-		GPIO.output(4,True)	
+		GPIO.output(pin,True)	
 		return jsonify(lights="Off", channel = channel)
 	else:
 		return jsonify(error="No state passed")

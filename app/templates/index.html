@@ -16,9 +16,31 @@
           <tr>
             <td>1</td>
             <td>Christmas Lights</td>
-            <td><a href="#"><button type="button" id = "lights-on" class="btn btn-success btn-lg">On</button></a></td>
-            <td><a href="#"><button type="button" id = "lights-off" class="btn btn-default btn-lg">Off</button></a></td>
-            <td>Channel is currently <span id = "lights-status"></span></td>
+            <td><a href="#"><button type="button" data-channel="1" class="btn btn-success btn-lg lights-on">On</button></a></td>
+            <td><a href="#"><button type="button" data-channel="1" class="btn btn-default btn-lg lights-off">Off</button></a></td>
+            <td>Channel is currently <span id = "lights-status-1"></span></td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td>Christmas Lights</td>
+            <td><a href="#"><button type="button" data-channel="2" class="btn btn-success btn-lg lights-on">On</button></a></td>
+            <td><a href="#"><button type="button" data-channel="2" class="btn btn-default btn-lg lights-off">Off</button></a></td>
+            <td>Channel is currently <span id = "lights-status-2"></span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Christmas Lights</td>
+            <td><a href="#"><button type="button" data-channel="3" class="btn btn-success btn-lg lights-on">On</button></a></td>
+            <td><a href="#"><button type="button" data-channel="3" class="btn btn-default btn-lg lights-off">Off</button></a></td>
+            <td>Channel is currently <span id = "lights-status-3"></span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Christmas Lights</td>
+            <td><a href="#"><button type="button" data-channel="4" class="btn btn-success btn-lg lights-on">On</button></a></td>
+            <td><a href="#"><button type="button" data-channel="4" class="btn btn-default btn-lg lights-off">Off</button></a></td>
+            <td>Channel is currently <span id = "lights-status-4"></span></td>
           </tr>
         </table>
 
@@ -28,20 +50,20 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <script>
-    $("#lights-on").click(function(e){
-      var channel = 99;
+    $(".lights-on").click(function(e){
+      var channel = $(this).data("channel");
       console.log('About to turn channel ' + channel + ' on')
-      $.get( "/lights/on/1", function( data ) {
-        $( "#lights-status" ).html( data.lights );
+      $.get( "/lights/on/"+channel, function( data ) {
+        $( "#lights-status-"+channel ).html( data.lights );
         });
     });
     </script>
   <script>
-    $("#lights-off").click(function(e){
-      var channel = 99;
+    $(".lights-off").click(function(e){
+      var channel = $(this).data("channel");
       console.log('About to turn channel ' + channel + ' off')
-      $.get( "/lights/off/1", function( data ) {
-        $( "#lights-status" ).html( data.lights );
+      $.get( "/lights/off/"+channel, function( data ) {
+        $( "#lights-status-"+channel ).html( data.lights );
         });
     });
     </script>      
