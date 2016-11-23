@@ -14,7 +14,7 @@ print(socket.gethostname())
 @app.route('/')
 @app.route('/index')
 def index():
-
+	GPIO.setmode(GPIO.BCM)
 	#Check the status of the 4 pins
 	states = [GPIO.input(4), GPIO.input(17), GPIO.input(22), GPIO.input(27)]
 
