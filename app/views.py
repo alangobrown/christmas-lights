@@ -20,6 +20,6 @@ def index():
 	GPIO.setup(22,GPIO.OUT)
 	GPIO.setup(27,GPIO.OUT)
 	#Check the status of the 4 pins
-	states = ["On" if GPIO.input(4)==0 else "Off", GPIO.input(17), GPIO.input(22), GPIO.input(27)]
+	states = ["On" if GPIO.input(4)==0 else "Off", "On" if GPIO.input(17)==0 else "Off", "On" if GPIO.input(22)==0 else "Off", "On" if GPIO.input(27)==0 else "Off"]
 
 	return render_template('index.html', title='Home', host=socket.gethostname(), states=states)
