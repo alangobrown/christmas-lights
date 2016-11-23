@@ -36,9 +36,11 @@ def on(state,channel):
 	
 	if(state == 'on'):
 		GPIO.output(pin,False)
+		app.logger.info('Pin ' + str(pin) + ' has been set to False (On)')
 		return jsonify(lights="On", channel = channel)
 	elif (state =='off'):
-		GPIO.output(pin,True)	
+		GPIO.output(pin,True)
+		app.logger.info('Pin ' + str(pin) + ' has been set to True (Off)')
 		return jsonify(lights="Off", channel = channel)
 	else:
 		return jsonify(error="No state passed")
