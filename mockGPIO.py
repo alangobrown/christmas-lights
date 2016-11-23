@@ -21,3 +21,8 @@ def output(pin, value):
 	print 'MockGPIO - pin ', pin, ' set to ', value
 
 
+def input(pin):
+	print 'MockGPIO - pin ', pin, ' input returned as 1'
+	return 1
+
+
